@@ -11,9 +11,9 @@ The complete archive, with the same files, is on Zenodo: [doi:10.5281/zenodo.239
 | Path | Content |
 |---|---|
 | `P20_revised.pdf` | Manuscript, revised edition (23 pages) |
-| `results/csv/statistics/` | 26 files: every pair statistic as a function of separation r, at redshifts z = 10 ... 0 |
-| `results/csv/tables/` | 11 files: the small result tables of the paper (see the index below) |
-| `results/csv/figures/` | 26 files: every plotted series of Figs 3-28 |
+| `statistics/` | 26 files: every pair statistic as a function of separation r, at redshifts z = 10 ... 0 |
+| `tables/` | 11 files: the small result tables of the paper (see the index below) |
+| `figures/` | 26 files: every plotted series of Figs 3-28 |
 | `CITATION.cff`, `LICENSE` | citation metadata and licence |
 
 ## Format of the CSV files
