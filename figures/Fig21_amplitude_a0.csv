@@ -1,0 +1,39 @@
+# Publisher,Zhijie Xu,zhijie.xu@pnnl.gov,zhijiexu@hotmail.com,
+# Updated,10/2026,,,
+#Name,Plotted data of Fig. 21 (all series),,,
+#Ref. [1] Fig. 21,https://doi.org/10.1063/5.0151129,Xu 2023 Phys. Fluids 35 077105 (P20); arXiv:2202.00910,,
+#Note,Series longer than 3000 points thinned to 3000 points uniform in log x (values unchanged); full resolution in results/csv/statistics.,,,
+#Note,Negative-valued quantities on log axes are stored as |y| where the published figure did so (see label).,,,
+,,,,
+,,,,
+series,label,x,y,source
+0,a_0,0.0909090909,0.753211444,pipeline (explicit)
+0,a_0,0.166666667,0.735643147,pipeline (explicit)
+0,a_0,0.25,0.693537503,pipeline (explicit)
+0,a_0,0.333333333,0.642892398,pipeline (explicit)
+0,a_0,0.4,0.604176722,pipeline (explicit)
+0,a_0,0.5,0.558592582,pipeline (explicit)
+0,a_0,0.666666667,0.508705303,pipeline (explicit)
+0,a_0,0.769230769,0.486215495,pipeline (explicit)
+0,a_0,0.909090909,0.462768354,pipeline (explicit)
+0,a_0,1,0.450683626,pipeline (explicit)
+1,(u/u_0)^2,0.0909090909,0.0594592914,pipeline (explicit)
+1,(u/u_0)^2,0.166666667,0.11166576,pipeline (explicit)
+1,(u/u_0)^2,0.25,0.175633193,pipeline (explicit)
+1,(u/u_0)^2,0.333333333,0.249555051,pipeline (explicit)
+1,(u/u_0)^2,0.4,0.317332618,pipeline (explicit)
+1,(u/u_0)^2,0.5,0.425416885,pipeline (explicit)
+1,(u/u_0)^2,0.666666667,0.613142859,pipeline (explicit)
+1,(u/u_0)^2,0.769230769,0.731920229,pipeline (explicit)
+1,(u/u_0)^2,0.909090909,0.894693734,pipeline (explicit)
+1,(u/u_0)^2,1,1,pipeline (explicit)
+2,a_0(u/u_0)^2,0.0909090909,0.0447854187,pipeline (explicit)
+2,a_0(u/u_0)^2,0.166666667,0.0821461514,pipeline (explicit)
+2,a_0(u/u_0)^2,0.25,0.121808206,pipeline (explicit)
+2,a_0(u/u_0)^2,0.333333333,0.160437045,pipeline (explicit)
+2,a_0(u/u_0)^2,0.4,0.191724981,pipeline (explicit)
+2,a_0(u/u_0)^2,0.5,0.237634716,pipeline (explicit)
+2,a_0(u/u_0)^2,0.666666667,0.311909024,pipeline (explicit)
+2,a_0(u/u_0)^2,0.769230769,0.355870957,pipeline (explicit)
+2,a_0(u/u_0)^2,0.909090909,0.414035947,pipeline (explicit)
+2,a_0(u/u_0)^2,1,0.450683626,pipeline (explicit)

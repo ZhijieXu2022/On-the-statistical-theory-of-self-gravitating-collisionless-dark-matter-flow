@@ -1,0 +1,184 @@
+# Publisher,Zhijie Xu,zhijie.xu@pnnl.gov,zhijiexu@hotmail.com,,,,
+# Updated,10/2026,,,,,,
+#Name,Equation-by-equation audit of all 154 equations,,,,,,
+#Ref. [1],https://doi.org/10.1063/5.0151129,Xu 2023 Phys. Fluids 35 077105 (P20); arXiv:2202.00910,,,,,
+,,,,,,,
+,,,,,,,
+n,label,kind,check,value,tolerance,status,note
+1,ZEqnNum586699,definition,u(a) = 1D rms velocity; evaluated from raw snapshot z=0 (data/velocity_amplitude),,,pass,u0 = 354.607 km/s (paper 354.61)
+2,eq:2,definition,vector-scalar correlation Q_i,,,n/a,
+3,ZEqnNum445111,definition,isotropic form of Q_i (standard: an isotropic vector function of r is A1(r) r_i),,,n/a,
+4,ZEqnNum191183,identity,d/dx_i = -d/dr_i for r = x' - x at fixed x' (Eq. 5); sign consistent,,,pass,checked analytically
+5,eq:5,definition,chain rule for r = x' - x,,,n/a,
+6,ZEqnNum725997,identity,3-D finite-difference divergence of A1 r_i vs 3A1 + r A1',3.80e-10,1e-06,pass,
+7,ZEqnNum790489,identity,curl of A1 r_i vanishes (finite differences),1.60e-11,1e-08,pass,
+8,eq:8,identity,epsilon_ijk delta_jk = 0 and r x r = 0,0.00e+00,1e-15,pass,
+9,ZEqnNum666615,definition,constant-divergence condition (statement),,,n/a,
+10,ZEqnNum195930,definition,second-order velocity correlation tensor,,,n/a,
+11,eq:11,identity,symmetry Q_ij(-r) = Q_ji(r) = Q_ij(r) for the isotropic form,,,pass,A2 r_i r_j + B2 delta_ij is symmetric and even in r
+12,eq:12,definition,trace of Q_ij,,,n/a,
+13,ZEqnNum221113,definition,isotropic (Robertson) form of Q_ij,,,n/a,
+14,ZEqnNum321178,identity,"3-D finite-difference divergence Q_ij,i vs (4A2 + rA2' + B2'/r) r_j",4.13e-10,1e-06,pass,
+15,ZEqnNum800260,identity,"3-D finite-difference curl eps_imk Q_mj,k vs eps_imj r_m (A2 - B2'/r)",7.86e-11,1e-06,pass,
+16,ZEqnNum935612,identity,trace = A2 r^2 + 3B2,0.00e+00,1e-12,pass,
+17,ZEqnNum950112,identity,Q_ij r_i r_j / r^2 = A2 r^2 + B2,2.22e-16,1e-12,pass,
+18,ZEqnNum991811,identity,Q_ij n_i n_j = B2 for n perpendicular to r,5.55e-17,1e-12,pass,
+19,eq:19,identity,-((u x r^) x r^) = u - (u.r^) r^ (left-associative cross products),1.11e-16,1e-14,pass,brackets should be written explicitly: -(u x r^) x r^
+20,ZEqnNum890288,definition,"correlation coefficients; evaluated on data (results/level3/rho_L, rho_T) = MATLAB exactly",,,pass,
+21,ZEqnNum924986,definition,mean cosines; evaluated on data = published Fig 16 exactly,,,pass,
+22,ZEqnNum170842,definition,mean cosines; PDFs reproduced (check_angle_pdfs.py),,,pass,cos theta_ur pooled over both particles (r^ to partner)
+23,ZEqnNum610884,identity,R2 = 2R = L2 + 2T2 from Eqs. 16-18,0.00e+00,1e-12,pass,
+24,ZEqnNum609039,definition,R(r) from E_u(k) (Fourier pair with Eq. 25),,,n/a,
+25,ZEqnNum891034,spectral,inverse transform of Eq. 24 returns E_u (test spectrum),6.87e-15,1e-05,pass,
+26,eq:26,spectral,l_u0: int R dr = (pi/2) int E/k dk,0.00e+00,1e-05,pass,
+27,ZEqnNum726048,spectral,sigma_u^2 = (1/3) int_{-inf}^{inf} E W^2 dk -> u^2 at r -> 0,5.00e-09,1e-06,pass,"(1/3) int over (-inf, inf) = (2/3) int_0^inf for even E"
+28,ZEqnNum605014,identity,W(x) = 3[sin x - x cos x]/x^3 = 3 j1(x)/x,1.50e-16,1e-14,pass,
+29,ZEqnNum904685,spectral,sigma_d^2 = (1/3) int E (1-W^2) dk,,,pass,"checked through Eqs. 31, 70, 82"
+30,ZEqnNum910224,identity,R2(2r) = 1/(24r^2) d/dr[r^-2 d/dr(r^3 d/dr(sigma_u^2 r^4))] (test spectrum),2.98e-05,1e-04,pass,
+31,ZEqnNum926839,identity,sigma_u^2 + sigma_d^2 = u^2,0.00e+00,1e-10,pass,
+32,ZEqnNum359490,definition,E_ur = -d sigma_u^2/dr,,,n/a,
+33,eq:33,spectral,E_ur r^2 = -(4/3) int E(x/r) W W' x dx,4.26e-09,1e-05,pass,
+34,eq:34,power-law,R2 for E=b k^-m (m=0.4): published sign vs numerical Mellin integral,9.27e-12,1e-07,pass,requires the leading minus sign (v1 fix); without it the result has the wrong sign
+35,ZEqnNum585776,power-law,"sigma_d^2 for E=b k^-m, m=1.5",2.54e-10,1e-05,pass,
+35,ZEqnNum585776,power-law,"sigma_d^2 for E=b k^-m, m=2.5",1.89e-10,1e-05,pass,
+36,eq:36,definition,sigma_d^2 = trace/3 of the dispersion tensor; evaluated in spheres (pipeline/sphere_dispersion.py),,,n/a,
+37,ZEqnNum823415,identity,incompressible: r B2' = -(r^4 A2)'/r (test L2 = exp(-r^2)),4.48e-10,1e-06,pass,
+38,eq:38,identity,incompressible: B2 = (r^4 A2 + r^2 B2)'/(2r),2.18e-10,1e-06,pass,
+39,ZEqnNum314105,identity,T2 = (r^2 L2)'/(2r) gives a divergence-free tensor (3-D FD); R2 = (r^3 L2)'/r^2,5.82e-08,1e-06,pass,
+40,eq:40,identity,"A2 = -L2'/(2r), B2 = (r^2 L2)'/(2r)",1.86e-16,1e-06,pass,
+41,eq:41,identity,Q_ij from Eq. 40,,,pass,substitution of Eq. 40 into Eq. 13
+42,ZEqnNum333566,spectral,incompressible L2 = int E 2 j1(kr)/(kr): satisfies R2 = (r^3 L2)'/r^2,3.68e-09,1e-06,pass,
+43,eq:43,spectral,incompressible T2 = int E (j0 - j1/(kr)): L2 + 2T2 = R2,3.88e-16,1e-09,pass,
+44,ZEqnNum351152,approximation,"small-x expansions of j0, j1",8.33e-15,1e-10,pass,
+45,eq:45,spectral,incompressible: int L2 dr = int R dr (first line),4.24e-16,1e-05,pass,
+45,eq:45,spectral,"incompressible: published ""int T2 dr = 0"" vs numerical int T2 dr / int R dr",5.00e-01,1e-06,FAIL,int T2 dr = 0.500000 int L2 dr: correct statement is int T2 dr = (1/2) int L2 dr (erratum E10)
+46,eq:46,identity,"constant divergence: Q_ij,i = theta <u_j> (statement, homogeneity gives <u_j'> = -<u_j>... see note)",,,pass,uses <u_j> = -<u_j'> for pairs; consistent with Eq. 9
+47,ZEqnNum320035,identity,irrotational: L2 = (r T2)' gives curl-free tensor (3-D FD); R2 = (r^3 T2)'/r^2,3.34e-07,1e-06,pass,
+48,eq:48,identity,irrotational Q_ij = T2' r_i r_j / r + T2 delta_ij,4.94e-11,1e-06,pass,
+49,ZEqnNum127370,spectral,irrotational L2 spectral form satisfies L2 = (r T2)',4.73e-09,1e-06,pass,
+50,ZEqnNum324737,spectral,irrotational T2 spectral form: L2 + 2T2 = R2,3.88e-16,1e-09,pass,
+51,ZEqnNum505635,spectral,irrotational: int T2 dr = int R dr and int L2 dr = 0,7.32e-16,1e-05,pass,
+52,ZEqnNum956600,definition,volume-averaged R2; evaluated on data = published Fig 4 exactly,,,pass,
+53,ZEqnNum250774,identity,S2lp = 2(<u_L^2> - L2) on the N-body pair statistics (z=0),6.50e-04,1e-02,pass,holds if <u_L^2> = <u_L'^2>; pair-symmetric averaging; see value
+54,eq:54,definition,first-order pairwise structure function,,,n/a,
+55,ZEqnNum414891,definition,S2l = 2(u^2 - L2),,,n/a,
+56,eq:56,definition,limit for a smooth (collisional) flow; contrasted with Eq. 59 for SG-CFD,,,n/a,"statement for regular flows, not SG-CFD"
+57,eq:57,definition,halo/out-of-halo decomposition of the dispersion,,,n/a,
+58,ZEqnNum350084,identity,rho_cor = sigma_h^2/sigma^2 = 1/(1+sigma_v^2/sigma_h^2),1.52e-16,1e-15,pass,
+59,ZEqnNum890245,data,rho_L(r->0) = 1/2 claimed; N-body mean over r <= 0.03 Mpc/h,1.14e-01,5e-02,FAIL,measured rho_L(0.001-0.03) = 0.386; the estimate 1/2 is approximate (kept as open issue O-rhoL)
+60,eq:60,data,S2lp(r->0) = <u_L^2>(r->0) (requires rho_L0 = 1/2),5.82e-02,2e-01,pass,measured S2lp/<u_L^2> at r=0.001: 0.942 = 2(1-rho_L0)
+61,ZEqnNum924181,data,"S2lp, S2l -> 2u^2 at large r (r = 100 Mpc/h)",1.38e-02,3e-02,pass,asymptotic statement; at r=100 Mpc/h L2 = -0.0138 (model Eq. 111: -0.0198)
+62,eq:62,identity,momentum conservation m v1 + m v2 = m' v3,,,pass,algebraic
+63,eq:63,identity,<v3^2> = 2(m/m')^2 (<u_L^2> + <v1 v2>) with <v1^2>=<v2^2>,,,pass,algebraic expansion
+64,eq:64),definition,relativistic energy balance of a merger,,,n/a,
+65,ZEqnNum962574,identity,"m'/m from Eqs. 63-64 (quadratic, + root) vs published closed form",0.00e+00,1e-14,pass,
+65,ZEqnNum962574,approximation,m'/m ~ 2 + (1-rho_L0)<u_L^2>/(2c^2) for <u_L^2> << c^2,1.05e-05,1e-02,pass,
+66,eq:66,data,S2ip = 6<u_L^2> - 2R2 assumes <|u|^2>_pairs = 3<u_L^2>; N-body ratio at r < 1 Mpc/h,9.85e-02,5e-02,FAIL,"median <|u|^2>/(3<u_L^2>) = 0.902 (r<1), 0.845 (1-5 Mpc/h); exact identity S2ip = 2<|u|^2> - 2R2 (erratum E13)"
+67,ZEqnNum973047,definition,S2i = 6u^2 - 2R2,,,n/a,
+68,ZEqnNum594172,spectral,S2i = 4 int E (1 - j0),1.99e-16,1e-09,pass,
+69,ZEqnNum911575,power-law,"S2i for E=b k^-m, m=1.5",1.65e-11,1e-06,pass,
+69,ZEqnNum911575,power-law,"S2i for E=b k^-m, m=2.5",3.50e-10,1e-06,pass,
+70,ZEqnNum947585,identity,S2i(2r) from sigma_d^2 (test spectrum),6.11e-05,1e-04,pass,
+71,eq:71,definition,enstrophy E_n = int E k^2 dk,,,n/a,
+72,ZEqnNum356384,identity,two forms of S2x equal,1.79e-16,1e-10,pass,
+73,ZEqnNum624967,identity,S2x/(2r^2) = (1/3) int E k^2 W^2,,,pass,division of Eq. 72 by 2r^2; = int_r^inf E_nr by Eq. 78
+74,eq:74,approximation,sharp-k approximation defining K(r),,,n/a,definition of the effective cut-off K
+75,eq:75,approximation,from Eqs. 73-74,,,pass,(3/2)S2x/r^2 = int E k^2 W^2 = int_0^K E k^2
+76,ZEqnNum952229,identity,1/(3r^2) d/dr[r^-1 d/dr(S2x r^4)] = d S2i(2r)/dr (test spectrum),1.26e-05,1e-04,pass,the MATLAB integration of this equation omitted a factor 1/2 (erratum E6); the equation itself is correct
+77,ZEqnNum204217,power-law,"S2x for E=b k^-m, m=1.5",6.21e-09,1e-04,pass,
+77,ZEqnNum204217,power-law,"S2x for E=b k^-m, m=2.5",1.37e-08,1e-04,pass,
+78,ZEqnNum336678,definition,E_nr = -d[S2x/(2r^2)]/dr,,,n/a,
+79,eq:79,spectral,E_nr r^4 = -(2/3) int E(x/r) W W' x^3 dx,5.01e-09,1e-05,pass,
+80,ZEqnNum944866,spectral,incompressible S2l = (4/3) int E (1 - 3 j1/(kr)),0.00e+00,1e-09,pass,
+81,eq:81,identity,incompressible S2i = (r^3 S2l)'/r^2,1.18e-08,1e-06,pass,
+82,ZEqnNum258035,identity,incompressible S2l(2r) from sigma_d^2,6.34e-05,1e-04,pass,
+83,ZEqnNum124513,power-law,"incompressible S2l for E=b k^-m, m=1.5",9.85e-09,1e-04,pass,
+83,ZEqnNum124513,power-law,"incompressible S2l for E=b k^-m, m=2.5",7.92e-09,1e-04,pass,
+84,ZEqnNum957243,power-law,"S2l/sigma_d^2 = (4+n)(6+n)/(12 2^n), n=0.25",1.19e-16,1e-10,pass,
+85,eq:85,power-law,"S2i/sigma_d^2 = (3+n)(4+n)(6+n)/(12 2^n), n=0.25",1.47e-16,1e-10,pass,
+86,eq:86,power-law,"S2x/sigma_d^2 = n(3+n)(6+n)/(4(2+n)), n=0.25",1.97e-16,1e-10,pass,
+84,ZEqnNum957243,power-law,"S2l/sigma_d^2 = (4+n)(6+n)/(12 2^n), n=0.6",2.66e-16,1e-10,pass,
+85,eq:85,power-law,"S2i/sigma_d^2 = (3+n)(4+n)(6+n)/(12 2^n), n=0.6",2.96e-16,1e-10,pass,
+86,eq:86,power-law,"S2x/sigma_d^2 = n(3+n)(6+n)/(4(2+n)), n=0.6",0.00e+00,1e-10,pass,
+87,eq:87,spectral,irrotational S2l = (4/3) int E (1 - 3 j0 + 6 j1/(kr)),1.89e-16,1e-09,pass,
+88,ZEqnNum905257,identity,irrotational (r S2i)' = (r^3 S2l)'/r^2,9.94e-09,1e-06,pass,
+89,ZEqnNum793459,identity,"<theta theta'> = -Q_pq,pq (one derivative w.r.t. x, one w.r.t. x')",,,pass,sign from Eq. 5
+90,eq:90,identity,"Q_pq,pq closed form (3-D FD)",8.97e-06,1e-04,pass,
+91,ZEqnNum844816,identity,"<omega.omega'> = -(delta_jp delta_kq - delta_jq delta_kp) Q_kq,jp = -lap Q_kk + Q_pq,pq",,,pass,epsilon-delta identity
+92,ZEqnNum266353,identity,-lap R2 = <omega.omega'> + <theta theta'> (3-D FD),0.00e+00,1e-04,pass,
+93,ZEqnNum226610,identity,"lap R2 closed form in A2, B2 (3-D FD)",3.16e-06,1e-04,pass,
+94,ZEqnNum518422,spectral,-lap R2 = 2 int E k^2 j0(kr) dk,2.30e-07,1e-04,pass,
+95,ZEqnNum912296,identity,R_theta + R_omega = lap S2i / 4 (first form),2.30e-07,1e-04,pass,
+95,ZEqnNum912296,identity,second form with S2x: tested as written at r and at 2r,5.00e-01,1e-03,FAIL,"as written = 0.32144; (R_theta+R_omega)(r) = 1.3397, (2r) = 0.64291: printed form = half of (R_theta+R_omega)(2r) (erratum E12)"
+95,ZEqnNum912296,identity,corrected second form: (R_theta+R_omega)(2r) = 1/(48r^2) d/dr[r^-2 d/dr(r^3 d/dr(S2x r^2))],3.86e-05,1e-03,pass,
+96,ZEqnNum441477,identity,"R_omega in A2, B2 (both forms; 3-D FD)",2.17e-05,1e-04,pass,
+97,ZEqnNum528609,identity,"R_theta in A2, B2 (both forms; 3-D FD)",8.97e-06,1e-04,pass,
+98,eq:98,identity,incompressible <omega.omega'> = 30A2 + 18rA2' + 2r^2 A2'' (3-D FD),1.02e-04,1e-03,pass,
+99,ZEqnNum244673,identity,"incompressible <omega.omega'> = -lap R2 (theta = 0), R2 via L2",,,pass,Eq. 92 with <theta theta'> = 0 (Eq. 89 with Eq. 14 = 0)
+100,eq:100,spectral,R_omega = int E k^2 j0 (incompressible),,,pass,= Eq. 94 / 2
+101,eq:101,identity,irrotational <theta theta'> = -(r^2 A2'' + 9rA2' + 15A2) (3-D FD),1.46e-05,1e-03,pass,
+102,ZEqnNum432904,identity,"irrotational <theta theta'> = -lap R2 (omega = 0), R2 via T2",,,pass,Eq. 92 with <omega.omega'> = 0
+103,ZEqnNum639543,spectral,R_theta = int E k^2 j0 (irrotational),,,pass,= Eq. 94 / 2
+104,ZEqnNum299865,definition,mean potential within r,,,n/a,
+105,ZEqnNum955584,definition,power-law density correlation,,,n/a,
+106,eq:106,identity,U(r) = -(3-n)/(5-2n) G M(r)/r (first form),4.44e-16,1e-08,pass,
+106,eq:106,identity,middle form -4 pi G rho0/(5-2n) (r/r_xi)^-n,8.11e-01,1e-08,FAIL,missing factor a^m r^2: with it the ratio is 2.2e-16 (erratum E11)
+107,eq:107,model,sigma_d^2 from the Jeans/virial argument (model assumption),,,n/a,assumption stated in the text
+108,ZEqnNum206214,identity,"sigma_d^2 in the strongly non-linear limit (xi >> 1), gamma = H0 = 1",0.00e+00,1e-08,pass,
+109,ZEqnNum489540,identity,S2l from Eq. 108 via Eq. 84 with n -> 2-n,0.00e+00,1e-12,pass,
+110,ZEqnNum971850,model,T2 = a0 u^2 exp(-r/r2); fitted to data (fits_and_scales.json: a0(z) reproduces Fig 18 to 1e-4),,,pass,
+111,ZEqnNum344034,identity,L2 = (r T2)' (irrotational),8.84e-12,1e-08,pass,
+112,ZEqnNum235904,identity,R2 = (r^3 T2)'/r^2,1.16e-11,1e-08,pass,
+113,ZEqnNum485183,identity,"int R2 r^m dr closed form, m=0",0.00e+00,1e-07,pass,
+113,ZEqnNum485183,identity,"int R2 r^m dr closed form, m=1",0.00e+00,1e-07,pass,
+113,ZEqnNum485183,identity,"int R2 r^m dr closed form, m=3",1.51e-16,1e-07,pass,
+113,ZEqnNum485183,identity,m=2: closed form = 0,1.15e-16,1e-07,pass,
+114,eq:114,identity,l_u0 = (1/2u^2) int R2 dr: published 2 a0 r2,1.00e+00,1e-08,FAIL,exact value 1.000000 a0 r2 -> erratum E1 (factor 2)
+114,eq:114,identity,l_u0 corrected = a0 r2,0.00e+00,1e-08,pass,
+115,ZEqnNum178726,identity,sigma_u^2 closed form satisfies Eq. 30 with R2 of Eq. 112 (50-digit evaluation),1.17e-06,1e-05,pass,
+116,ZEqnNum509836,identity,S2l = 2(u^2 - L2) with Eq. 111,0.00e+00,1e-14,pass,
+117,ZEqnNum858651,identity,S2x closed form satisfies Eq. 76 with Eq. 112 (50-digit evaluation),6.97e-07,1e-05,pass,
+118,ZEqnNum973449,identity,R_theta = -lap R2/2 for the irrotational model,1.67e-08,1e-06,pass,
+118,ZEqnNum973449,identity,"zeros of R_theta at (7 -/+ sqrt17) r2/2 = 33.3, 128.7 Mpc/h (r2 = 23.13)",8.62e-04,2e-03,pass,
+119,ZEqnNum513737,model,"linear theory: delta = -div u/(aHf), u = -Hf grad phi/(4 pi G rho a), Poisson",,,n/a,standard linear perturbation theory
+120,eq:120,identity,xi = <theta theta'>/(aHf)^2 = -lap R2/(aHf)^2 (irrotational),,,pass,"Eqs. 102, 119"
+121,ZEqnNum762470,identity,xi of Eq. 121 = -lap R2 with Eq. 112 (aHf = 1),1.67e-08,1e-06,pass,
+122,ZEqnNum250582,identity,d xi/dr closed form,1.47e-10,1e-07,pass,
+123,eq:123,identity,"int xi r^m dr closed form, m=2",1.91e-16,1e-06,pass,
+123,eq:123,identity,"int xi r^m dr closed form, m=3",2.36e-16,1e-06,pass,
+123,eq:123,identity,"int xi r^m dr closed form, m=4",7.19e-17,1e-06,pass,
+123,eq:123,identity,"int xi r^m dr closed form, m=5",4.02e-16,1e-06,pass,
+124,ZEqnNum197404,identity,xibar = 3/r^3 int xi y^2 = -3R2'/r = closed form,8.91e-12,1e-06,pass,
+125,eq:125,model,R_grad phi = (9/4)(aH/f)^2 R from Eq. 119 (SCDM 4 pi G rho a^2 = 3/2 a^2 H^2),,,n/a,prefactor follows from Eq. 119 with Omega_m = 1
+126,eq:126,identity,R_grad phi = -lap R_phi with Eq. 128 -> Eq. 125 (aH/f = 1),5.91e-08,1e-06,pass,
+127,eq:127,identity,lap lap f = f'''' + (4/r) f''' for radial f,1.65e-04,1e-03,pass,finite-difference accuracy ~1e-4; identity verified algebraically
+128,ZEqnNum590702,identity,R_phi closed form (see Eq. 126),,,pass,verified through Eq. 126
+129,ZEqnNum976884,spectral,E_u(k) = FT of R = R2/2 for Eq. 112,1.85e-15,1e-05,pass,
+130,eq:130,identity,k_max r2 = sqrt(2),6.40e-11,1e-06,pass,
+130,eq:130,identity,E_u(k_max): published 256/(125 pi) r2 a0,7.28e-01,1e-10,FAIL,erratum E2
+130,eq:130,identity,E_u(k_max) corrected 32/(27 pi) r2 a0,2.26e-16,1e-12,pass,
+131,eq:131,identity,E_theta = k^2 E_u,0.00e+00,1e-12,pass,
+132,eq:132,spectral,E_delta = FT of xi (aHf = 1),7.29e-13,1e-05,pass,
+133,eq:133,identity,P = 2 pi^2 E_delta / k^2,1.21e-16,1e-12,pass,
+134,eq:134,identity,P(k_max) = 128 pi a0 r2 /27,1.83e-16,1e-12,pass,P peaks at k r2 = sqrt(2) too (same functional form as E_u)
+135,ZEqnNum759927,spectral,E_phi = FT of R_phi,2.56e-14,1e-05,pass,
+136,ZEqnNum776534,model,<u_L^2> fit; curves reproduce published Fig 21 exactly (check_figures),,,pass,"a_d = 0.44 a^1.75, r_d1 = 11.953, r_d2 = 27.4 a^0.25 Mpc/h"
+137,ZEqnNum392323,model,"S2l = 2u^2 (r/r1)^n, n = 1/4 (data fit, Fig 22)",,,pass,verified against data in v1 (n = 0.2547 over 0.1-1 Mpc/h)
+138,ZEqnNum178092,identity,L2 = u^2 - S2l/2,0.00e+00,1e-14,pass,
+139,ZEqnNum955991,identity,R2 = (r^3 L2)'/r^2 (constant divergence ~ incompressible relation),1.86e-11,1e-07,pass,
+140,ZEqnNum739102,identity,T2 = (R2 - L2)/2,0.00e+00,1e-14,pass,
+141,eq:141,identity,sigma_d^2 = 24 2^n/((4+n)(6+n)) (r/r1)^n = 1.0745 (via Eq. 84),1.53e-05,1e-04,pass,
+142,eq:142,identity,S2i = 6 - 2R2 = 2(3+n)(r/r1)^n,0.00e+00,1e-12,pass,
+143,ZEqnNum413972,identity,S2x coefficient 6n(3+n)2^n/((4+n)(2+n)) = 0.6063 (via Eq. 86 x Eq. 141),6.19e-05,1e-04,pass,
+143,ZEqnNum413972,identity,consistency with Eq. 86 x Eq. 141,1.83e-16,1e-14,pass,
+144,ZEqnNum352266,identity,R_omega = -lap R2/2 with Eq. 139,2.08e-08,1e-05,pass,
+145,eq:145,identity,E_u = C r1^-n k^-(1+n) reproduces S2i = 2(3+n)(r/r1)^n through Eq. 69,1.37e-16,1e-12,pass,
+146,eq:146,identity,C = 0.4485,9.62e-05,2e-04,pass,C = 0.44854
+147,ZEqnNum294673,model,smooth connection f = f1 (1-s)^n1 + f2 s^n2,,,pass,Table 3 parameters are the optimum of the author's objective (fits_and_scales.json)
+148,ZEqnNum986217,model,sigmoid,,,pass,
+149,ZEqnNum360823,identity,f1 = R2s = Eq. 139 (u = 1),,,pass,
+150,ZEqnNum438462,model,f2 = R2l = Eq. 112 with a0 = 0.4402 in the published fits,,,pass,Table 2 lists a0 = 0.45; the fits use 0.4402 (documented)
+151,ZEqnNum701881,model,R2 fit; reproduces published Fig 23 to 2e-15,,,pass,
+152,ZEqnNum496950,identity,R_t = 3T2 - R2 = (R2 - 3L2)/2 = T2 - L2,3.62e-15,1e-14,pass,
+153,eq:153,identity,"T2 = (R_t + R2)/3, L2 = (R2 - 2R_t)/3",5.17e-16,1e-14,pass,
+154,ZEqnNum277395,model,R_t segments; published Fig 23 L2/T2 reproduced to 1e-13 only with R_t2 = R_ts<->R_tl,,,pass,text/Table 3 say R_tm<->R_tl (erratum E8)

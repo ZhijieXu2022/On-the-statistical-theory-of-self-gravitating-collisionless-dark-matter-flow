@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use these data or the manuscript, please cite the article and this archive."
+title: "Dark matter flow data and manuscript: On the statistical theory of self-gravitating collisionless dark matter flow"
+type: dataset
+authors:
+  - family-names: Xu
+    given-names: Zhijie
+    affiliation: "Pacific Northwest National Laboratory"
+version: "2.0"
+date-released: "2026-10-25"
+doi: "10.5281/zenodo.23902041"
+license: CC-BY-4.0
+keywords: [dark matter, N-body simulation, velocity correlation, structure function, cosmology, turbulence, reproducibility]
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Xu
+      given-names: Zhijie
+  title: "On the statistical theory of self-gravitating collisionless dark matter flow"
+  journal: "Physics of Fluids"
+  volume: 35
+  issue: 7
+  start: "077105"
+  year: 2023
+  doi: "10.1063/5.0151129"
+references:
+  - type: dataset
+    authors: [{family-names: Xu, given-names: Zhijie}]
+    title: "Dark matter flow dataset Part II: correlation-based statistics"
+    doi: "10.5281/zenodo.6757654"
+    year: 2022
+  - type: dataset
+    authors: [{family-names: Xu, given-names: Zhijie}]
+    title: "Dark matter flow dataset Part I: halo-based statistics"
+    doi: "10.5281/zenodo.6541231"
+    year: 2022

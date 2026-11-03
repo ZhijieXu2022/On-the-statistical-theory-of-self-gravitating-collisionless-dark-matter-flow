@@ -1,0 +1,14 @@
+# Publisher,Zhijie Xu,zhijie.xu@pnnl.gov,zhijiexu@hotmail.com,,,,,,,,,
+# Updated,10/2026,,,,,,,,,,,
+#Name,Parameters of the smooth connections (Table 3); published values and refit under the author's objective,,,,,,,,,,,
+"#Ref. [1] Eq. (147-154), Fig. 27",https://doi.org/10.1063/5.0151129,Xu 2023 Phys. Fluids 35 077105 (P20); arXiv:2202.00910,,,,,,,,,,
+#Note,Fits use a0 = 0.4402 and r2 = 23.1321 Mpc/h (author's fitting script).,,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+connection,x_a published,x_b published,x_c published,n1 published,n2 published,x_a refit,x_b refit,x_c refit,n1 refit,n2 refit,rms residual published,rms residual refit
+R2s<->R2l,2.7,1.35,1.83,0.59,1.09,2.6922,1.3571,1.8292,0.5932,1.0848,0.0068005416,0.00679967339
+L2s<->L2l,3.62,2.02,6.36,0.78,3.52,3.6325,1.9925,6.2598,0.7469,3.6943,0.00754049142,0.00753915931
+T2s<->T2l,1.28,2.64,0.37,0.3,1.57,1.2807,2.6319,0.3706,0.2978,1.5781,0.00476308183,0.00476234112
+Rt1: Rts<->Rtm,0.21,0.19,0.16,0.5,7.2,,,,,,,
+Rt2: Rts<->Rtl (erratum E8),6.05,2.05,11.75,1.39,-0.6,,,,,,,
+Rt: Rt1<->Rt2,0.5,0.4,3.7,0.9,1,,,,,,0.00262126527,
