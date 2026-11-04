@@ -6,6 +6,17 @@ The complete archive, with the same files, is on Zenodo: [doi:10.5281/zenodo.239
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23902041.svg)](https://doi.org/10.5281/zenodo.23902041)
 
+## Major findings
+
+Virgo SCDM N-body simulation, redshifts z = 10 to 0:
+
+- Exact kinematic relations link the correlation, structure, dispersion and spectrum functions of three idealized flows: incompressible, constant-divergence and irrotational. Incompressible and constant-divergence flows share the same relations for even-order correlations.
+- The peculiar velocity is a constant-divergence flow on small scales, where particle pairs sit in the same halo, and an irrotational flow on large scales, with the transition near r<sub>t</sub> ≈ 1.3 Mpc/h.
+- Because the flow is collisionless, the longitudinal velocities of two particles at vanishing separation are only partly correlated: the limiting correlation coefficient is ρ<sub>L</sub> = 1/2, compared with ρ<sub>L</sub> = 1 for incompressible flow.
+- On large scales the transverse velocity correlation is exponential, T<sub>2</sub> ∝ e<sup>−r/r<sub>2</sub></sup>, with a time-independent comoving scale r<sub>2</sub> ≈ 23.1 Mpc/h that may be related to the horizon size at matter–radiation equality; all other velocity, density and potential statistics on these scales then follow analytically.
+- On small scales the longitudinal structure function follows a one-fourth law, S<sub>2</sub><sup>l</sup> ∝ r<sup>1/4</sup>, from which the remaining small-scale statistics follow.
+- Vorticity is negatively correlated for separations between 1 and 7 Mpc/h, and divergence for r ≳ 33 Mpc/h, which produces a negative density correlation on those scales.
+
 ## Contents
 
 | Path | Content |
